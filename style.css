@@ -35,6 +35,15 @@ main {
     margin-top: 60px;
 }
 
+.question {
+    font-size: 20px;
+    margin: 15px;
+}
+
+label {
+    font-size: 20px;
+}
+
 h2, h1 {
     margin: 15px;
 }
