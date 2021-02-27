@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java Script Quiz</title>
     <link rel="stylesheet" href="style.css">
+    <title>JS Quiz</title>
 </head>
 <body>
-    <header>
-        <div id="highscores">see highscores</div>
-        <h1 class="time"></h1>
-    </header>
-    <main>
-        <div id="main">
-            <h1 id ="quizTitle">JavaScript Quiz</h1>
-            <h2 id="quiz-content">Welcome to this quiz on Javascript. You will start with 60 seconds to answer each answer each question correctly. You will be awarded 1 point for each correctly answered question. For every question you answer incorrectly, you will lose 5 seconds from the clock. Good luck!</h2>
-            <button onclick="startQuiz()" id="startButton">start quiz</button>
+    <head>
+        <h2 class="time">0</h2>
+    </head>
+    <div class="container">
+        <div id="question-container" class = "hide">
+        <div id="question">Question</div>
+        <div id="answer-buttons" class="btn-grid">
+            <button class="btn">answer 1</button>
+            <button class="btn">answer 2</button>
+            <button class="btn">answer 3</button>
+            <button class="btn">answer 4</button>
         </div>
-    </main>
-    <script src ="script.js"></script>
-
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">start</button>
+            <button id="next-btn" class="next-btn btn hide">next</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

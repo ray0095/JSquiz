@@ -1,43 +1,26 @@
-// Selects element by class
-var timer = document.querySelector(".time");
+const startButton = document.getElementById('start-btn')
+const nextButton = document.getElementById('next-btn')
+const questionContainerElement = document.getElementById('question-container')
+const questionElement = document.getElementById('question')
+const answerButtonsElement = document.getElementById('answer-buttons')
 var timeLeft = 60;
-var points = 0;
-var main = document.querySelector("#main");
-//Quiz questions and answers
+var timer = document.querySelector(".time");
 
-const quizQuestions = [
-    {
-        question: "INSERT QUESTION ONE",
-        answers: {
-            a: "ANSWER ONE",
-            b: "ANSWER TWO",
-            c: "ANSWER THREE",
-        },
-        correctAnswer: "c"
-    },
-    {
-        question: "INSERT QUESTION TWO",
-        answers: {
-            a: "ANSWER ONE",
-            b: "ANSWER TWO",
-            c: "ANSWER THREE",
-        },
-        correctAnswer: "a"
-        },  
-    {
-        question: "INSERT QUESTION THREE",
-        answers: {
-            a: "ANSWER ONE",
-            b: "ANSWER TWO",
-            c: "ANSWER THREE",
-        },
-        correctAnswer: "b"
-        }  
-];
+let shuffledQuestions, currentQuestionIndex
 
-function startQuiz (){ //Start game function applied to button
-    setTime();
-    javaQuiz ();
+startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+  currentQuestionIndex++
+  setNextQuestion()
+})
+
+function startGame() {
+  setTime();
+  startButton.classList.add('hide')
+  shuffledQuestions = questions.sort(() => Math.random() - .5)
+  currentQuestionIndex = 0
+  questionContainerElement.classList.remove('hide')
+  setNextQuestion()
 }
 
 function setTime() { //Countdown function
@@ -49,49 +32,98 @@ function setTime() { //Countdown function
     if(timeLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      endQuiz();
       return;
     }
   }, 1000);
 }
 
-function endQuiz() { //Alert for when timer runs out
-  window.alert("Time's UP!");
+function setNextQuestion() {
+  resetState()
+  showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
-
-//Quiz question function
-function javaQuiz () {
-  const output = []; //constant for html display of questions and answer choices
-  document.getElementById("startButton").style.display ="none"; //start button is no longer displayed
-  document.getElementById("quizTitle").style.display="none"; //h1 content is no longer displayed
-  document.getElementById("quiz-content").style.display="none"//h2 content is no longer displayed
-
-//question is selected from array above 
-quizQuestions.forEach(
-    (currentQuestion, questionNumber) => {
-    const answers = []; //answer choices array 
-    for(letter in currentQuestion.answers){//for loop to run on each answer choice in current Question
-      answers.push( //adding each answer choice to empty "answers" array
-        `<label> 
-        <input type="radio" name="question${questionNumber}" value="${letter}">
-        ${letter} :
-        ${currentQuestion.answers[letter]}
-      </label>`
-      ); // HTML added 
+function showQuestion(question) {
+  questionElement.innerText = question.question
+  question.answers.forEach(answer => {
+    const button = document.createElement('button')
+    button.innerText = answer.text
+    button.classList.add('btn')
+    if (answer.correct) {
+      button.dataset.correct = answer.correct
     }
-    output.push(
-      `<div class="question"> ${currentQuestion.question} </div>
-          <div class="answers"> ${answers.join('')} </div>`
-    );
+    button.addEventListener('click', selectAnswer)
+    answerButtonsElement.appendChild(button)
+  })
 }
 
-);
-main.innerHTML = output.join('');
-//main content changes to question
-//answer choices are displayed as buttons 
-//if user's button choice === correct answer then points++
-//if user's button choise !== correct answer then timeLeft--
+function resetState() {
+  clearStatusClass(document.body)
+  nextButton.classList.add('hide')
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+  }
 }
 
+function selectAnswer(e) {
+  const selectedButton = e.target
+  const correct = selectedButton.dataset.correct
+  setStatusClass(document.body, correct)
+  Array.from(answerButtonsElement.children).forEach(button => {
+    setStatusClass(button, button.dataset.correct)
+  })
+  if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    nextButton.classList.remove('hide')
+  } else {
+    startButton.innerText = 'Restart'
+    startButton.classList.remove('hide')
+  }
+}
 
+function setStatusClass(element, correct) {
+  clearStatusClass(element)
+  if (correct) {
+    element.classList.add('correct')
+  } else {
+    element.classList.add('wrong')
+  }
+}
+
+function clearStatusClass(element) {
+  element.classList.remove('correct')
+  element.classList.remove('wrong')
+}
+
+const questions = [
+  {
+    question: 'What is 2 + 2?',
+    answers: [
+      { text: '4', correct: true },
+      { text: '22', correct: false }
+    ]
+  },
+  {
+    question: 'Who is the best YouTuber?',
+    answers: [
+      { text: 'Web Dev Simplified', correct: true },
+      { text: 'Traversy Media', correct: true },
+      { text: 'Dev Ed', correct: true },
+      { text: 'Fun Fun Function', correct: true }
+    ]
+  },
+  {
+    question: 'Is web development fun?',
+    answers: [
+      { text: 'Kinda', correct: false },
+      { text: 'YES!!!', correct: true },
+      { text: 'Um no', correct: false },
+      { text: 'IDK', correct: false }
+    ]
+  },
+  {
+    question: 'What is 4 * 2?',
+    answers: [
+      { text: '6', correct: false },
+      { text: '8', correct: true }
+    ]
+  }
+]

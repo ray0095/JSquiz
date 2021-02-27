@@ -1,69 +1,49 @@
-:root{
-    --background:#cd8de5;
-    --quizbox:  #484553;
-    --text: white;
-}
-
 * {
     box-sizing: border-box;
-    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
     padding: 0;
-}
-
-body{
-    text-align: center;
-    background-color: var(--background);
-    color: var(--text);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-header {
+    margin: 0;
     display: flex;
-    justify-content: space-between;
-    padding: 60px;
-    font-size: 40px;
-    flex-wrap: wrap;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
-main {
-    display: inline-block;
-    max-width: 800px;
-    background-color: var(--quizbox);
+.container {
     padding: 40px;
+    background-color: purple;
     border-radius: 25px;
-    margin: 15px;
-    margin-top: 60px;
 }
 
-.question {
-    font-size: 20px;
-    margin: 15px;
+.btn-grid{
+    display: grid;
+    margin: 5px;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-label {
-    font-size: 20px;
+.btn {
+    border-radius: 25px;
+    border: none;
+    padding: 5px;
 }
 
-h2, h1 {
-    margin: 15px;
+.btn.correct {
+    background-color: seagreen;
 }
 
-button {
-    padding: 10px;
-    font-size: 20px;
+.btn.wrong {
+    background-color: slategray;
 }
 
-@media (max-width:420px) {
-    header {
-        font-size: 20px;
-        padding: 40px;
-    }
+.start-btn, .next-btn {
+    font-size: 1.5rem;
+    padding: 20px;
+}
 
-    main {
-        margin: 15px;
-        margin-top: 0;
-        font-size: 70%;
-    }
-
-
+.hide {
+    display: none;
 }
