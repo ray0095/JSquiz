@@ -1,0 +1,52 @@
+:root {
+    --button-color:#484553;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.choice-container {
+    display: flex;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    font-size: 1.8rem;
+    background-color: var(--button-color);
+
+}
+
+.choice-prefix {
+    padding: 1.5rem 2.5rem;
+}
+
+.choice-text {
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.choice-container:hover {
+    box-shadow: 2px 2px 10px var(--text-color);
+}
+
+.correct {
+    background-color: #40BA8E;
+}
+
+.incorrect {
+    background-color: lightgrey;
+}
+
+#hud {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hud-prefix {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.hud-main-text {
+    text-align: center;
+}

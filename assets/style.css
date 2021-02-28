@@ -1,0 +1,109 @@
+:root {
+    --background-color: #d5a6e6;
+    --button-color:#484553;
+    --text-color: white;
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--text-color)
+}
+
+body{
+    background-color: var(--background-color);
+}
+
+h1,h2,h3,h4 {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 5.4rem;
+    color:var(--button-color)
+}
+
+h1 > span {
+    font-size: 2.4rem;
+}
+
+h2 {
+    font-size: 4.2rem;
+}
+
+h3 {
+    font-size: 2.8rem;
+}
+
+.container {
+    width: 100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.container > * {
+    width: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    width: 20rem;
+    text-align: center;
+    background-color: var(--button-color);
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    text-decoration: none;
+}
+
+.btn:hover {
+    box-shadow: 2px 2px 10px var(--text-color);
+}
+
+.btn[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input {
+    color: var(--button-color);
+    padding: 1.5rem;
+    margin: 1.5rem;
+    border-radius: 2rem;
+    border: none;
+}
